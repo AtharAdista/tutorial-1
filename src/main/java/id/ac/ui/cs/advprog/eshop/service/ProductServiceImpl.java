@@ -24,13 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product edit(Product editedProduct) {
-        Optional<Product> existingProduct = productRepository.findById((editedProduct.getProductId()));
-        if (existingProduct.isPresent()) {
-            productRepository.edit(editedProduct);
-            return editedProduct;
-        } else {
-            throw new IllegalArgumentException("Product not found with ID: " + editedProduct.getProductId());
-        }
+        return productRepository.edit(editedProduct);
     }
 
     public Optional<Product> findById(String id) {
