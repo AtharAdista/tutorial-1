@@ -39,11 +39,6 @@ public class ProductRepository {
         return productData.iterator();
     }
 
-    public Optional<Product> findById(String id) {
-        return productData.stream()
-                .filter(product -> product.getProductId().equals(id))
-                .findFirst();
-    }
 
     public Product deleteProduct(String id) {
         Optional<Product> product = findById(id);
