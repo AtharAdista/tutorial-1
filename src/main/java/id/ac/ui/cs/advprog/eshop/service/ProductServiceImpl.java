@@ -27,8 +27,8 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.edit(editedProduct);
     }
 
-    public Optional<Product> findById(String id) {
-        return productRepository.findById(id);
+    public Optional<Product> findById(String idProduct) {
+        return productRepository.findById(idProduct);
     }
 
     @Override
@@ -37,6 +37,12 @@ public class ProductServiceImpl implements ProductService {
         List<Product> allProduct = new ArrayList<>();
         productIterator.forEachRemaining(allProduct::add);
         return allProduct;
+    }
+
+
+    @Override
+    public Product deleteProduct(String idProduct) {
+        return productRepository.deleteProduct(idProduct);
     }
 
 
