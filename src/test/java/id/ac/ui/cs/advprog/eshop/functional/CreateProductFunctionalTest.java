@@ -57,6 +57,26 @@ public class CreateProductFunctionalTest {
     }
 
     @Test
+    void testIfFormValid(ChromeDriver driver) throws Exception{
+        driver.get(baseUrl + "/product/create");
+
+        WebElement nameInput = driver.findElement(By.id("nameInput"));
+        nameInput.sendKeys("Sampo Cap Bango");
+
+        WebElement quantityInput = driver.findElement(By.id("quantityInput"));
+        quantityInput.sendKeys("5");
+
+        WebElement nameInForm= driver.findElement(By.xpath("/html/body/div/form/div[1]/input"));
+        String productNameText = nameInForm.getAttribute("value");
+        assertEquals("Sampo Cap Bango", productNameText);
+
+        WebElement quantityInForm= driver.findElement(By.xpath("/html/body/div/form/div[2]/input"));
+        String productQuantityText = quantityInForm.getAttribute("value");
+        assertEquals("05", productQuantityText);
+
+    }
+
+    @Test
     void testIfCreateProductWorks(ChromeDriver driver) throws Exception {
         driver.get(baseUrl + "/product/create");
 
