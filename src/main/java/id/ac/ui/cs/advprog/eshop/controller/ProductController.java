@@ -39,8 +39,8 @@ public class ProductController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editProductPage(@PathVariable String idProduct, Model model) {
-        Optional<Product> product = service.findById(idProduct);
+    public String editProductPage(@PathVariable String id, Model model) {
+        Optional<Product> product = service.findById(id);
         if (product.isPresent()) {
             model.addAttribute("product", product.get());
             return "editProduct";
@@ -56,8 +56,8 @@ public class ProductController {
     }
 
     @PostMapping ("/delete/{id}")
-    public String deleteProduct( @PathVariable String idProduct, Model model){
-        service.deleteProduct(idProduct);
+    public String deleteProduct( @PathVariable String id, Model model){
+        service.deleteProduct(id);
         return "redirect:../list";
 
     }
