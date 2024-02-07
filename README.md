@@ -6,16 +6,28 @@ NPM : 2206081875
 
 ### Reflection 1
 
-You already implemented two new features using Spring Boot. Check again your source code and evaluate the coding standards that you have learned in this module. Write clean code principles and secure coding practices that have been applied to your code.  If you find any mistake in your source code, please explain how to improve your code. Please write your reflection inside the repository's README.md file.</br></br>
+Setelah mencoba lab satu saya menyadari bahwa pemahaman saya menggunakan Spring Boot masih kurang, dikarenakan saya baru pertama kali menggunakan Spring Boot. </br>
 
-Saya sudah menerapkan beberapa clean code yang sudah saya pelajari, namun sepertinya masih ada beberapa code saya yang kurang clean.</br></br>
-Clean code yang sudah saya terapkan
-- Menerapkan nama variabel yang self-explained sehingga tidak diperlukan comment agar orang lain dapat memahami kode saya
-- Membuat fungsi yang hanya melakukan satu tugas sehingga fungsi tersebut akan lebih mudah dipahami
-- Membuat nama fungsi yang deskriptif sehingga orang akan langsung memahami tujuan dari fungsi tersebut
-- Menerapkan interface dan private variable
-- Menerapkan error handling
+Saya sudah mencoba untuk menerapkan clean code pada code yang telah saya buat, namun kemungkinan penerapan clean code saya terapkan masih memiliki kekurangan.
 
-Secure coding yang sudah saya terapkan
-- Menerapkan POST dan GET sesuai kebutuhan agar data sensitif tidak bocor
+Clean code yang sudah diterapkan:
+- Nama variabel yang jelas dan self-explained.
+- Nama fungsi yang jelas dan self-explained.
+- Fungsi yang hanya melakukan satu tugas (tugas yang sederhana).
+- Error handling, saya sudah menerapkan beberapa error handling pada kode saya.
+- Saya sudah menerapkan OOP dan juga interface agar kode yang saya buat lebih terstruktur dan rapi.
 
+Secure code yang sudah saya terapkan (Saya kurang yakin apakah ini termasuk secure code):
+- Menerapkan post untuk create product, edit product, dan delete product
+
+Kekurangan code saya terdapat pada fungsi edit dan delete yang masih menggunakan metode post, seharusnya edit bisa menggunakan metode put dan delete bisa menggunakan metode delete.
+
+
+### Reflection 2 
+
+
+
+1. Unit test memiliki fungsi untuk melakukan pengecekan apakah kode kita berjalan secara semestinya. Unit test menurut saya sangat berguna dikarenakan jika kita mengganti-ganti kode, kita bisa melakukan pengecekan secara otomatis dan cepat.  Kita bisa mengutamakan membuat unit test yang memeriksa hal-hal yang signifikan dalam kode, setelah hal signifikan selesai diperiksa barulah kita fokus membuat unit test yang fokus ke hal-hal detail. Menurut saya untuk membuat unit test yang bisa cover 100% kode kita sangatlah sulit dan membuang-buang banyak waktu . Selain itu, walaupun kita berhasil membuat unit test yang sudah cover 100% keseluruhan kode, tidak menjamin bahwa kode tersebut akan bebas dari bug karena mungkin saja ada edge case yang kita lewatkan. Setelah saya baca dari google, unit test yang optimal adalah unit test yang bisa cover 70-80% code kita.
+
+
+2. Dikarenakan fuctional testnya memiliki setup prosedur dan variable yang sama maka akan menyebabkan code menjadi kurang clean dikarenakan adanya redundant dan duplikasi, seharusnya kita bisa menyatukan kode-kode tersebut dalam satu file atau melakukan extend class dari class yang ada pada CreateProductFunctionalTest.java agar tidak terjadi redundant dan duplikasi. Selain itu, juga ada kemungkinan masalah pemeliharaan dikarenakan kode yang mirip dapat membuat kita mengalami kebingungan.
