@@ -23,7 +23,6 @@ public class ProductRepository {
                 .findFirst();
     }
 
-    // Metode untuk mengedit produk
     public Product edit(Product editedProduct) {
         Optional<Product> checkProduct = findById(editedProduct.getProductId());
         if (checkProduct.isPresent()) {
@@ -31,6 +30,7 @@ public class ProductRepository {
             productData.set(index, editedProduct);
             return editedProduct;
         } else {
+            // tidak ditemukan
             throw new IllegalArgumentException("Product not found with ID: " + editedProduct.getProductId());
         }
     }

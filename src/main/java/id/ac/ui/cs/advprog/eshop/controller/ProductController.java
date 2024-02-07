@@ -45,7 +45,6 @@ public class ProductController {
             model.addAttribute("product", product.get());
             return "editProduct";
         } else {
-            // Handle jika produk tidak ditemukan
             return "redirect:/product/list";
         }
     }
