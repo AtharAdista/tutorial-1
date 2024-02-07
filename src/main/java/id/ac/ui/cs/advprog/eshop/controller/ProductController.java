@@ -57,11 +57,6 @@ public class ProductController {
         return "redirect:list";
     }
 
-    @PostMapping ("/delete/{id}")
-    public String deleteProduct( @PathVariable String id, Model model){
-        service.deleteProduct(id);
-        return "redirect:../list";
 
-    }
 
 }
