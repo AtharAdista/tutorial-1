@@ -40,14 +40,5 @@ public class ProductRepository {
     }
 
 
-    public Product deleteProduct(String id) {
-        Optional<Product> product = findById(id);
-        if (product.isPresent()) {
-            productData.remove(product.get());
-            return product.get();
-        } else {
-            throw new IllegalArgumentException("Product not found with ID: " + id);
-        }
-    }
 
 }
