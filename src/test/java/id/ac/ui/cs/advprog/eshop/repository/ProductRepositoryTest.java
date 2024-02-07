@@ -201,6 +201,19 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testEditProductIfIdFalse(){
+
+        Product productEdited = new Product();
+        productEdited.setProductId("eb558e91f-1c39-460e-8860-71af6af63bd6");
+        productEdited.setProductName("Sampo Cap ABC");
+        productEdited.setProductQuantity(200);
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            productRepository.edit(productEdited);
+        });
+    }
+
+    @Test
     void testDeleteProductIfIdFalse(){
         Product productInit = new Product();
         productInit.setProductId("eb558e91f-1c39-460e-8860-71af6af63bd6");
