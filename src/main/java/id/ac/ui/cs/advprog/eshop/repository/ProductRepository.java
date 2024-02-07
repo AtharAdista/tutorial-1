@@ -17,9 +17,9 @@ public class ProductRepository {
         return product;
     }
 
-    public Optional<Product> findById(String id) {
+    public Optional<Product> findById(String idProduct) {
         return productData.stream()
-                .filter(product -> product.getProductId().equals(id))
+                .filter(product -> product.getProductId().equals(idProduct))
                 .findFirst();
     }
 
@@ -40,13 +40,13 @@ public class ProductRepository {
     }
 
 
-    public Product deleteProduct(String id) {
-        Optional<Product> product = findById(id);
+    public Product deleteProduct(String idProduct) {
+        Optional<Product> product = findById(idProduct);
         if (product.isPresent()) {
             productData.remove(product.get());
             return product.get();
         } else {
-            throw new IllegalArgumentException("Product not found with ID: " + id);
+            throw new IllegalArgumentException("Product not found with ID: " + idProduct);
         }
     }
 
