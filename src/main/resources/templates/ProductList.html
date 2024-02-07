@@ -21,10 +21,14 @@
         <tbody>
         <tr th:each="product: ${products}">
             <td th:text="${product.productName}"></td>
-
             <td th:text="${product.productQuantity}"></td>
             <td><a th:href="@{/product/edit/{id}(id=${product.productId})}" class="btn btn-primary btn-sm mb-3">Edit</a></td>
-            <td><a th:href="@{/product/delete/{id}(id=${product.productId})}" class="btn btn-primary btn-sm mb-3">Delete Product</a> </td>
+            <td>
+                <form th:action="@{/product/delete/{id}(id=${product.productId})}" method="post">
+                    <input type="hidden" name="_method" value="delete" />
+                    <button type="submit" class="btn btn-primary btn-sm mb-3">Delete Product</button>
+                </form>
+            </td>
 
         </tr>
         </tbody>
