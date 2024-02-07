@@ -17,15 +17,28 @@ public class ProductRepository {
         return product;
     }
 
-    public Iterator<Product> findAll(){
-        return productData.iterator();
-    }
-
     public Optional<Product> findById(String id) {
         return productData.stream()
                 .filter(product -> product.getProductId().equals(id))
                 .findFirst();
     }
+
+    // Metode untuk mengedit produk
+    public Product edit(Product editedProduct) {
+        Optional<Product> checkProduct = findById(editedProduct.getProductId());
+        if (checkProduct.isPresent()) {
+            int index = productData.indexOf(checkProduct.get());
+            productData.set(index, editedProduct);
+            return editedProduct;
+        } else {
+            throw new IllegalArgumentException("Product not found with ID: " + editedProduct.getProductId());
+        }
+    }
+
+    public Iterator<Product> findAll(){
+        return productData.iterator();
+    }
+
 
     public Product deleteProduct(String id) {
         Optional<Product> product = findById(id);

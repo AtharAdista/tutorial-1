@@ -3,11 +3,13 @@ package id.ac.ui.cs.advprog.eshop.controller;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/product")
@@ -34,6 +36,24 @@ public class ProductController {
         List<Product> allProducts = service.findAll();
         model.addAttribute("products", allProducts);
         return "productList";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editProductPage(@PathVariable String id, Model model) {
+        Optional<Product> product = service.findById(id);
+        if (product.isPresent()) {
+            model.addAttribute("product", product.get());
+            return "editProduct";
+        } else {
+            // Handle jika produk tidak ditemukan
+            return "redirect:/product/list";
+        }
+    }
+
+    @PostMapping("/edit")
+    public String editProductPost(@ModelAttribute Product product, Model model) {
+        service.edit(product);
+        return "redirect:list";
     }
 
     @PostMapping ("/delete/{id}")
