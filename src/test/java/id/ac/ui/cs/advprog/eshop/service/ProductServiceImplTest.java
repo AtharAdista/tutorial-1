@@ -110,14 +110,10 @@ public class ProductServiceImplTest {
         // Arrange
         Product product = initProduct("eb558e9f-1c39-460e-8860-71af6af63bd6","Sampo Cap Bambang", 100);
 
-        // Mocking the behavior of the productRepository.edit method
         when(productRepository.edit(product)).thenReturn(product);
 
-        // Act
         Product result = productServiceImpl.edit(product);
 
-        // Assert
-        // Verify that the result matches the edited product
         assertEquals(product, result);
     }
 

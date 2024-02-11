@@ -82,7 +82,6 @@ public class ProductControllerTest {
 
         when(productService.edit(product)).thenReturn(product);
 
-        // Act & Assert
         mockMvc.perform(post("/product/edit/{id}", id)
                         .param("productId", id)
                         .param("productName", product.getProductName())
@@ -98,7 +97,7 @@ public class ProductControllerTest {
     void testCreateProductPost() throws Exception{
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product.setProductName("Sampo Cap Bambang");
+        product.setProductName("Sampo Cap Usep");
         product.setProductQuantity(100);
 
         when(productService.create(product)).thenReturn(product);
@@ -117,7 +116,6 @@ public class ProductControllerTest {
 
         String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
 
-        // Act & Assert
         mockMvc.perform(post("/product/delete/{id}", productId))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("../list"));
