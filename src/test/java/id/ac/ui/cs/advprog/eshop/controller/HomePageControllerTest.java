@@ -26,21 +26,14 @@ public class HomePageControllerTest {
     @InjectMocks
     HomePageController homePageController;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(homePageController).build();
-    }
 
     @MockBean
     private ProductService productService;
 
-    @InjectMocks
-    ProductController productController;
+
 
     @Test
     public void testHomePage() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(homePageController).build();
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("homePage"));

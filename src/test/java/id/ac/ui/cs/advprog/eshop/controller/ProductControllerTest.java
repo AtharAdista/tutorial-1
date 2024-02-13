@@ -28,23 +28,15 @@ public class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
-    }
 
     @MockBean
     private ProductService productService;
 
-    @InjectMocks
-    ProductController productController;
 
 
 
     @Test
     public void testCreateProductPage() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
         mockMvc.perform(get("/product/create"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("createProduct"));
@@ -58,7 +50,6 @@ public class ProductControllerTest {
         mockProduct.setProductId(idProduct);
         when(productService.findById(idProduct)).thenReturn(Optional.of(mockProduct));
 
-        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
         mockMvc.perform(get("/product/edit/{id}", idProduct))
                 .andExpect(status().isOk())
                 .andExpect(view().name("editProduct"))
@@ -68,7 +59,6 @@ public class ProductControllerTest {
 
     @Test
     public void testListProductPage() throws Exception{
-        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
         mockMvc.perform(get("/product/list"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("productList"));
