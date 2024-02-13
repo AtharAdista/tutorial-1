@@ -2,13 +2,17 @@ package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Optional;
 
@@ -24,11 +28,23 @@ public class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
+    }
+
     @MockBean
     private ProductService productService;
 
+    @InjectMocks
+    ProductController productController;
+
+
+
     @Test
     public void testCreateProductPage() throws Exception {
+        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
         mockMvc.perform(get("/product/create"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("createProduct"));
@@ -42,6 +58,7 @@ public class ProductControllerTest {
         mockProduct.setProductId(idProduct);
         when(productService.findById(idProduct)).thenReturn(Optional.of(mockProduct));
 
+        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
         mockMvc.perform(get("/product/edit/{id}", idProduct))
                 .andExpect(status().isOk())
                 .andExpect(view().name("editProduct"))
@@ -50,7 +67,8 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testListProductPageIfIdValid() throws Exception{
+    public void testListProductPage() throws Exception{
+        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
         mockMvc.perform(get("/product/list"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("productList"));
