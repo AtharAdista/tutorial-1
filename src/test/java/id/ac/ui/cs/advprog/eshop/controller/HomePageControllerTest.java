@@ -23,10 +23,13 @@ public class HomePageControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @InjectMocks
+    HomePageController homePageController;
+
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(homePageController).build();
     }
 
     @MockBean
@@ -37,9 +40,9 @@ public class HomePageControllerTest {
 
     @Test
     public void testHomePage() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(productController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(homePageController).build();
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("HomePage"));
+                .andExpect(view().name("homePage"));
     }
 }
