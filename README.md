@@ -41,6 +41,11 @@ Kekurangan code saya terdapat pada fungsi edit dan delete yang masih menggunakan
 
 ### Reflection
 
+Code coverage 
+
+![image](https://github.com/AtharAdista/tutorial-1/assets/117746860/b750f15a-3aca-4b85-b03f-7de087bfb3a8)
+
+
 Ada beberapa masalah kode yang dideteksi oleh sonarcloud, berikut kode yang saya perbaiki demi meningkatkan kualitas kode saya
 - Dalam penamaan fungsi harus menggunakan camel case, namun ada beberapa fungsi saya yang tidak menerapkan hal ini. Setelah menerima code quality dari sonarcloud akhirnya saya memperbaiki masalah ini (misalnya mengganti method HomePage menjadi homePage)
 - Consistency (Add description to table tag). Masalah kedua dari kode saya yang dilaporkan oleh sonarcloud adalah harus memakai description jika menggunakan tag `<table>`. Untuk memperbaiki masalah ini, saya menambahkan deskripsi ke dalam table saya.
