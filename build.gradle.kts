@@ -1,7 +1,7 @@
 plugins {
 	java
 	id("jacoco")
-	id("org.sonarqube") version "3.5.0.2730"
+	id("org.sonarqube") version "4.0.0.2929"
 	id("org.springframework.boot") version "3.2.2"
 	id("io.spring.dependency-management") version "1.1.4"
 }
@@ -82,3 +82,8 @@ tasks.jacocoTestReport{
 	}
 }
 
+project.tasks["sonar"].dependsOn(tasks.test)
+
+jacoco{
+	toolVersion = "0.8.11"
+}
