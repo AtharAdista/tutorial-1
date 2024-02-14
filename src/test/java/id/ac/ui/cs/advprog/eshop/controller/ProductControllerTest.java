@@ -86,7 +86,6 @@ public class ProductControllerTest {
         product.setProductName("Sampo Cap Bambang");
         product.setProductQuantity(10);
 
-
         when(productService.edit(product)).thenReturn(product);
 
         mockMvc.perform(put("/product/edit/{id}", id)
