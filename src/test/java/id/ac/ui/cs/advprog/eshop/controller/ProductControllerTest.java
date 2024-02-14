@@ -18,8 +18,7 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ProductController.class)
@@ -43,6 +42,13 @@ public class ProductControllerTest {
     }
 
     @Test
+    public void testListProductPage() throws Exception{
+        mockMvc.perform(get("/product/list"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("productList"));
+    }
+
+    @Test
     public void testEditProductPage() throws Exception{
 
         String idProduct = "eb558e9f-1c39-460e-8860-71af6af63bd6";
@@ -55,13 +61,6 @@ public class ProductControllerTest {
                 .andExpect(view().name("editProduct"))
                 .andExpect(model().attributeExists("product"))
                 .andExpect(model().attribute("product", mockProduct));
-    }
-
-    @Test
-    public void testListProductPage() throws Exception{
-        mockMvc.perform(get("/product/list"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("productList"));
     }
 
     @Test
@@ -80,17 +79,16 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testEditProductPostIfIdValid() throws Exception{
+    public void testEditProductPut() throws Exception{
         String id = "eb558e9f-1c39-460e-8860-71af6af63bd6";
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product.setProductName("Sampo Cap Bambang");
         product.setProductQuantity(10);
 
-
         when(productService.edit(product)).thenReturn(product);
 
-        mockMvc.perform(post("/product/edit/{id}", id)
+        mockMvc.perform(put("/product/edit/{id}", id)
                         .param("productId", id)
                         .param("productName", product.getProductName())
                         .param("productQuantity", String.valueOf(product.getProductQuantity())))
@@ -98,8 +96,6 @@ public class ProductControllerTest {
                 .andExpect(redirectedUrl("list"));
 
     }
-
-
 
     @Test
     void testCreateProductPost() throws Exception{
@@ -120,11 +116,11 @@ public class ProductControllerTest {
     }
 
     @Test
-    void testDeleteProductPost() throws Exception{
+    void testDeleteProductDelete() throws Exception{
 
         String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
 
-        mockMvc.perform(post("/product/delete/{id}", productId))
+        mockMvc.perform(delete("/product/delete/{id}", productId))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("../list"));
 
