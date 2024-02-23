@@ -32,10 +32,6 @@ public class ProductControllerTest {
     @MockBean
     private ProductService productService;
 
-    @MockBean
-    private CarServiceImpl carServiceImpl;
-
-
     @Test
     public void testCreateProductPage() throws Exception {
         mockMvc.perform(get("/product/create"))
