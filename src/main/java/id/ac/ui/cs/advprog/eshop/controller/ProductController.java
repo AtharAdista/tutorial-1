@@ -1,7 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 import id.ac.ui.cs.advprog.eshop.model.Car;
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.service.CarService;
 import id.ac.ui.cs.advprog.eshop.service.CarServiceImpl;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
 
@@ -79,6 +78,12 @@ class CarController extends ProductController{
         Car car = new Car();
         model.addAttribute("car", car);
         return "createCar";
+    }
+
+    @PostMapping("/crateCar")
+    public String createCarPost(@ModelAttribute Car car, Model model){
+        carservice.create(car);
+        return "redirect:listCar";
     }
 
     @PostMapping("/listCar")
