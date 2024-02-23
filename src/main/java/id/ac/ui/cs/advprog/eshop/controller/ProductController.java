@@ -87,7 +87,7 @@ class CarController extends ProductController{
     }
 
     @GetMapping("/listCar")
-    public String carListPage(@ModelAttribute Car car, Model model){
+    public String carListPage(Model model){
         List<Car> allCars = carservice.findAll();
         model.addAttribute("cars", allCars);
         return "carList";
