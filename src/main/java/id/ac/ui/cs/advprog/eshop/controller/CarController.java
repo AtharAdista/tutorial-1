@@ -46,7 +46,6 @@ public class CarController {
     public String editCarPost(@ModelAttribute Car car, Model model){
         System.out.println(car.getCarId());
         carservice.update(car.getCarId(), car);
-
         return "redirect:listCar";
     }
 
