@@ -55,3 +55,28 @@ Strategi saya untuk memperbaiki kualitas kode saya adalah dengan memanfaatkan so
 
 Menurut saya, kode saya sudah menerapkan CI/CD, namun mungkin penggunaannya masih belum maksimal, alasan saya mengatakan mengapa kode saya sudah menerapkan CI/CD adalah dikarenakan kode saya sudah menggunakan gradle yang mana membuat proyek java tanpa perlu compile secara manual satu persatu. Selain itu, saya sudah menerapkan penggunaan github action (ci.yml) untuk melakukan pengetesan kode secara otomatis setiap melakukan push ataupun pull ke repo github dan saya juga menggunakan beberapa tool yang dapat mengecek kualitas kode (scorecard.yml dan sonarcloud.yml) secara otomatis ketika saya melakukan push ataupun pull ke repo github. Dalam melakukan deploy, proses deploy akan terjadi secara otomatis setiap saya melakukan push ataupun pull ke repo github saya.
 </details>
+
+<details>
+    <summary>
+        Tutorial 3
+    </summary>
+
+1. Pada proyek ini, saya menerapkan SOLID principle
+   - SRP (Single responsiblity principle), prinsip ini memiliki arti bahwa sebuah class cuman boleh melakukan satu pekerjaan saja. Contoh penerapan SRP dalam proyek saya adalah memisahkan antara ProductController dengan CarController dalam file yang berbeda karena tugas mereka yang berbeda.
+   - OCP (Open-closed principle), prinsip ini memiliki arti bahwa sistem perangkat lunak (kelas, modul, fungsi, dll) harus terbuka untuk perluasan tetapi tertutup untuk modifikasi.Contoh penerapannya pada proyek ini adalah dengan membuat `CarService`, sehingga jika kita nantinya ingin membuat jenis `car` baru, kita bisa implement `CarService` yang sudah tersedia. 
+   - LSP (Liskov Substitution Principle), prinsip ini memiliki arti bahwa objek dari suatu kelas harus dapat diganti dengan objek dari kelas induknya tanpa mengganggu kebenaran program. Pada proyek ini diterapkan saat kita mengganti kelas `CarServiceImpl` dengan `CarService` pada `CarController` maka tidak akan terjadi error.
+   - ISP (Interface Segregation Principle), prinsip ini memiliki arti bahwa interface yang besar dapat dipecah-pecah ke interface yang lebih kecil sehingga tidak perlu memaksa membuat suatu method yang tidak relevan bagi kelas tersebut. Dalam proyek ini sudah diterapkan dengan membuat `CarService` yang hanya berfokus untuk `car` saja, sehingga nantinya kita bisa membuat method yang spesifik untuk car saja.
+   - DIP (Dependency Inversion Principle), prinsip ini memiliki arti bahwa modul tingkat tinggi tidak boleh tergantung pada modul tingkat rendah, tetapi harus bergantung pada abstraksi. Pada proyek ini diterapkan dengan memanggil kelas `CarService` bukan kelas `CarServiceImpl` pada `CarController`
+
+
+2. Keuntungan penerapan SOLID principle
+   - Kode akan lebih clean dan terstruktur, penerapan SRP membuat saya memisahkan CarController dan ProductController dalam file yang berbeda sehingga akan membuat kode menjadi lebih mudah dipahami, penerapan ISP juga membuat interface menjadi lebih spesifik contohnya pada penerapan `CarService`.
+   - Kode akan fleksibel, penerapan OCP membuat kita dapat membuat fitur baru tanpa memodifikasi kode yang sudah ada contohnya seperti penerapan interface pada `CarService`, dengan adanya `CarService` nantinya kita dapat membuat suatu fitur baru tanpa perlu merubah kelas yang sudah ada, penerapan LSP membuat kita dapat mengganti suatu kelas dengan kelas turunannya tanpa menyebabkan kesalahan. Selain itu, dengan penerapan DIP kita dapat mengurangi ketergantungan antar kode, jadinya kita dapat dengan mudah menerapkan fitur baru tanpa menyebabkan adanya kesalahan.
+
+
+3. Kekurangan jika tidak menerapkan SOLID princile
+   - Kode akan sulit di maintain, contoh dari kasus ini adalah ketika kita tidak menerapkan pemisahan antara CarController dan ProductController dalam file yang berbeda. Jika kita menyatukan dua kelas tersebut dalam file yang sama, maka nantinya kita akan mengalami kebingungan karena dalam satu file terdapat kelas berbeda yang tujuannya berbeda.
+   - Kode akan sulit di pahami, contoh dari kasus ini adalah ketika tidak menerapkan DIP, maka kode akan memiliki ketergantungan yang tinggi, selain itu tidak menerapkan SRP akan membuat kode sulit dipahami karena ada kemungkinan bahwa ada class yang memiliki tugas yang sangat banyak.
+   - Kode kurang fleksibel, dengan tidak menerapkan prinsip LSP dan OCP maka kode kita akan rentan terhadap perubahan dan sulit diperluas dikarenakan adanya potensi error.
+   - Kode akan kurang relevan, dengan tidak menerapkan prinsip ISP maka kode kita akan memiliki banyak sekali method-method yang tidak relevan.
+</details>
