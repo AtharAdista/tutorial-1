@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -106,8 +107,8 @@ public class PaymentTest {
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
                 this.order, "VOUCHER_CODE", this.paymentData, true);
 
-        payment.setStatus("SUCCESS");
-        assertEquals("SUCCESS", payment.getStatus());
+        payment.setStatus(PaymentStatus.SUCCESS.getValue());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
     }
 
     @Test
@@ -116,8 +117,8 @@ public class PaymentTest {
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
                 this.order, "VOUCHER_CODE", this.paymentData, false);
 
-        payment.setStatus("REJECTED");
-        assertEquals("REJECTED", payment.getStatus());
+        payment.setStatus(PaymentStatus.REJECTED.getValue());
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
     }
 
     @Test
@@ -138,8 +139,8 @@ public class PaymentTest {
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
                 this.order, "CASH_ON_DELIVERY", this.paymentData, true);
 
-        payment.setStatus("SUCCESS");
-        assertEquals("SUCCESS", payment.getStatus());
+        payment.setStatus(PaymentStatus.SUCCESS.getValue());
+        assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
     }
 
     @Test
@@ -148,8 +149,8 @@ public class PaymentTest {
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
                 this.order, "CASH_ON_DELIVERY", this.paymentData, false);
 
-        payment.setStatus("REJECTED");
-        assertEquals("REJECTED", payment.getStatus());
+        payment.setStatus(PaymentStatus.REJECTED.getValue());
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
     }
 
     @Test
