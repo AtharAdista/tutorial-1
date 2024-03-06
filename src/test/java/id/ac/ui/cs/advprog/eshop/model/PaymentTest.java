@@ -46,7 +46,8 @@ public class PaymentTest {
     void testAddPaymentWithVoucherCode(){
         this.paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
-        Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266", this.order, "VOUCHER_CODE", this.paymentData, true);
+        Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266", this.order,
+                "VOUCHER_CODE", this.paymentData);
 
         assertEquals("b3d7439-5b48-5775-94d8-g43ec9731266", payment.getId());
         assertEquals(this.order, payment.getOrder());
@@ -60,7 +61,8 @@ public class PaymentTest {
         this.paymentData = new HashMap<>();
         paymentData.put("address", "Jl. keren");
         paymentData.put("deliveryFee", "5000");
-        Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266", this.order, "CASH_ON_DELIVERY", this.paymentData, true);
+        Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266", this.order,
+                "CASH_ON_DELIVERY", this.paymentData);
 
         assertEquals("b3d7439-5b48-5775-94d8-g43ec9731266", payment.getId());
         assertEquals(this.order, payment.getOrder());
@@ -72,7 +74,7 @@ public class PaymentTest {
     void testAddPaymentWithEmptyMethod(){
         assertThrows(IllegalArgumentException.class, () -> {
             Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
-                    this.order, "", this.paymentData, true);
+                    this.order, "", this.paymentData);
         });
     }
 
@@ -80,7 +82,7 @@ public class PaymentTest {
     void testAddPaymentWithInvalidMethod(){
         assertThrows(IllegalArgumentException.class, () -> {
             Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
-                    this.order, "PINJAMAN_ONLINE", this.paymentData, true);
+                    this.order, "PINJAMAN_ONLINE", this.paymentData);
         });
     }
 
@@ -88,7 +90,7 @@ public class PaymentTest {
     void testAddPaymentWithNullOrder(){
         assertThrows(IllegalArgumentException.class, () -> {
             Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
-                    null, "VOUCHER_CODE", this.paymentData, false);
+                    null, "VOUCHER_CODE", this.paymentData);
         });
     }
 
@@ -97,7 +99,7 @@ public class PaymentTest {
         paymentData.clear();
         assertThrows(IllegalArgumentException.class, () -> {
             Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
-                    null, "VOUCHER_CODE", this.paymentData, true);
+                    null, "VOUCHER_CODE", this.paymentData);
         });
     }
 
@@ -105,7 +107,7 @@ public class PaymentTest {
     void testSetPaymentStatusToSuccessWhenUseVoucherCode(){
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
-                this.order, "VOUCHER_CODE", this.paymentData, true);
+                this.order, "VOUCHER_CODE", this.paymentData);
 
         payment.setStatus(PaymentStatus.SUCCESS.getValue());
         assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
@@ -115,7 +117,7 @@ public class PaymentTest {
     void testSetPaymentStatusToRejectedWhenUseVoucherCode(){
         paymentData.put("voucherCode", "ESHOP1234ABC567891011");
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
-                this.order, "VOUCHER_CODE", this.paymentData, false);
+                this.order, "VOUCHER_CODE", this.paymentData);
 
         payment.setStatus(PaymentStatus.REJECTED.getValue());
         assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
@@ -125,7 +127,7 @@ public class PaymentTest {
     void testSetPaymentStatusToInvalidStatusWhenUseVoucherCode(){
         paymentData.put("voucherCode", "ESHOP1234ABC567891011");
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
-                this.order, "VOUCHER_CODE", this.paymentData, false);
+                this.order, "VOUCHER_CODE", this.paymentData);
 
         assertThrows(IllegalArgumentException.class, () -> {
             payment.setStatus("HUFT");
@@ -137,7 +139,7 @@ public class PaymentTest {
         paymentData.put("address", "Jl. keren");
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
-                this.order, "CASH_ON_DELIVERY", this.paymentData, true);
+                this.order, "CASH_ON_DELIVERY", this.paymentData);
 
         payment.setStatus(PaymentStatus.SUCCESS.getValue());
         assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
@@ -147,7 +149,7 @@ public class PaymentTest {
     void testSetPaymentStatusToRejectedWhenUseCashOnDelivery(){
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
-                this.order, "CASH_ON_DELIVERY", this.paymentData, false);
+                this.order, "CASH_ON_DELIVERY", this.paymentData);
 
         payment.setStatus(PaymentStatus.REJECTED.getValue());
         assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
@@ -157,7 +159,7 @@ public class PaymentTest {
     void testSetPaymentStatusToInvalidStatusWhenUseCashOnDelivery(){
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
-                this.order, "CASH_ON_DELIVERY", this.paymentData, false);
+                this.order, "CASH_ON_DELIVERY", this.paymentData);
 
         assertThrows(IllegalArgumentException.class, () -> {
             payment.setStatus("HUFT");

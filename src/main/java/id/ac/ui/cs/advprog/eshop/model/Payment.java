@@ -19,17 +19,17 @@ public class Payment {
     Order order;
     boolean valid;
 
-    public Payment(String id, Order order, String method, Map<String,String> paymentData, boolean valid){
+    public Payment(String id, Order order, String method, Map<String,String> paymentData){
         this.id = id;
         this.order = order;
         this.method = method;
         this.paymentData = paymentData;
 
-        if (valid){
-            setStatus(PaymentStatus.SUCCESS.getValue());
-        } else {
-            setStatus(PaymentStatus.REJECTED.getValue());
-        }
+//        if (valid){
+//            setStatus(PaymentStatus.SUCCESS.getValue());
+//        } else {
+//            setStatus(PaymentStatus.REJECTED.getValue());
+//        }
 
         if (order == null){
             throw new IllegalArgumentException();
@@ -52,5 +52,7 @@ public class Payment {
             throw new IllegalArgumentException();
         }
     }
+
+
 
 }
