@@ -25,12 +25,6 @@ public class Payment {
         this.method = method;
         this.paymentData = paymentData;
 
-//        if (valid){
-//            setStatus(PaymentStatus.SUCCESS.getValue());
-//        } else {
-//            setStatus(PaymentStatus.REJECTED.getValue());
-//        }
-
         if (order == null){
             throw new IllegalArgumentException();
         }
@@ -38,10 +32,53 @@ public class Payment {
         if(paymentData.isEmpty()){
             throw new IllegalArgumentException();
         }
+
+        boolean isValid = false;
+
+        switch (method){
+            case "VOUCHER_CODE":
+                String voucherCodeChecking = paymentData.get("voucherCode");
+
+                if(voucherCodeChecking == null || voucherCodeChecking.isEmpty()){
+                    throw new IllegalArgumentException("Payment data is invalid");
+                }
+
+                if(voucherCodeChecking.length() == 16 && voucherCodeChecking.startsWith("ESHOP")){
+                    int i = 0;
+                    for (char data : voucherCodeChecking.toCharArray()){
+                        if (Character.isDigit(data)){
+                            i++;
+                        }
+                    }
+                    if (i == 8){
+                        isValid = true;
+                    }
+                }
+                break;
+
+
+            case "CASH_ON_DELIVERY":
+                String address = paymentData.get("address");
+                String deliveryFee = paymentData.get("deliveryFee");
+
+                isValid = address != null && !address.isEmpty() && deliveryFee != null && !deliveryFee.isEmpty();
+
+                break;
+            default:
+                throw new IllegalArgumentException();
+
+        }
+
+        if (isValid){
+            setStatus(PaymentStatus.SUCCESS.getValue());
+        } else {
+            setStatus(PaymentStatus.REJECTED.getValue());
+        }
+
     }
 
-    public Payment(String id, Order order, String method, Map<String, String> paymentData, boolean valid, String status){
-        this(id, order, method, paymentData, valid);
+    public Payment(String id, Order order, String method, Map<String, String> paymentData, String status){
+        this(id, order, method, paymentData);
         this.setStatus(status);
     }
 

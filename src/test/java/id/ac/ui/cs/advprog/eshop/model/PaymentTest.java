@@ -136,8 +136,9 @@ public class PaymentTest {
 
     @Test
     void testSetPaymentStatusToSuccessWhenUseCashOnDelivery(){
-        paymentData.put("address", "Jl. keren");
+        paymentData = new HashMap<>();
         paymentData.put("deliveryFee", "5000");
+        paymentData.put("address", "Jl. keren");
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
                 this.order, "CASH_ON_DELIVERY", this.paymentData);
 
@@ -147,6 +148,7 @@ public class PaymentTest {
 
     @Test
     void testSetPaymentStatusToRejectedWhenUseCashOnDelivery(){
+        paymentData = new HashMap<>();
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
                 this.order, "CASH_ON_DELIVERY", this.paymentData);
@@ -157,6 +159,7 @@ public class PaymentTest {
 
     @Test
     void testSetPaymentStatusToInvalidStatusWhenUseCashOnDelivery(){
+        paymentData = new HashMap<>();
         paymentData.put("deliveryFee", "5000");
         Payment payment = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
                 this.order, "CASH_ON_DELIVERY", this.paymentData);

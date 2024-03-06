@@ -40,18 +40,18 @@ public class PaymentRepositoryTest {
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
 
         payments = new ArrayList<>();
-        Payment payment1 = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266", orders.getFirst(), "VOUCHER_CODE", this.paymentData, true);
+        Payment payment1 = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266", orders.getFirst(), "VOUCHER_CODE", this.paymentData);
         payments.add(payment1);
 
         paymentData = new HashMap<>();
         paymentData.put("address", "Jl. keren");
         paymentData.put("deliveryFee", "5000");
-        Payment payment2 = new Payment("c4e8540-6c59-6886-05e9-h54fd0842377", orders.getFirst(), "CASH_ON_DELIVERY", this.paymentData, true);
+        Payment payment2 = new Payment("c4e8540-6c59-6886-05e9-h54fd0842377", orders.getFirst(), "CASH_ON_DELIVERY", this.paymentData);
         payments.add(payment2);
 
         paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
-        Payment payment3 = new Payment("d5f9651-7d60-7997-16f0-i65g1953488", orders.getFirst(), "VOUCHER_CODE", this.paymentData, true);
+        Payment payment3 = new Payment("d5f9651-7d60-7997-16f0-i65g1953488", orders.getFirst(), "VOUCHER_CODE", this.paymentData);
         payments.add(payment3);
 
     }
@@ -90,7 +90,7 @@ public class PaymentRepositoryTest {
     void testSaveUpdatePaymentByVoucher(){
         Payment payment = payments.get(2);
         paymentRepository.save(payment);
-        Payment newPayment = new Payment(payment.getId(), payment.getOrder(), payment.getMethod(), payment.getPaymentData(), payment.isValid(), PaymentStatus.SUCCESS.getValue());
+        Payment newPayment = new Payment(payment.getId(), payment.getOrder(), payment.getMethod(), payment.getPaymentData(), PaymentStatus.SUCCESS.getValue());
         Payment result = paymentRepository.save(newPayment);
 
         Payment findResult = paymentRepository.findById(payments.get(2).getId());
@@ -107,7 +107,7 @@ public class PaymentRepositoryTest {
     void testSaveUpdatePaymentByCashOnDelivery(){
         Payment payment = payments.get(2);
         paymentRepository.save(payment);
-        Payment newPayment = new Payment(payment.getId(), payment.getOrder(), payment.getMethod(), payment.getPaymentData(), payment.isValid(), PaymentStatus.SUCCESS.getValue());
+        Payment newPayment = new Payment(payment.getId(), payment.getOrder(), payment.getMethod(), payment.getPaymentData(), PaymentStatus.SUCCESS.getValue());
         Payment result = paymentRepository.save(newPayment);
 
         Payment findResult = paymentRepository.findById(payments.get(2).getId());

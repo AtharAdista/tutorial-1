@@ -26,7 +26,7 @@ public class PaymentServiceImpl implements PaymentService{
     public Payment setStatus(String paymentId, String status){
         Payment payment = paymentRepository.findById(paymentId);
         if(payment != null){
-            Payment newPayment = new Payment(payment.getId(), payment.getOrder(), payment.getMethod(), payment.getPaymentData(), payment.isValid(), status);
+            Payment newPayment = new Payment(payment.getId(), payment.getOrder(), payment.getMethod(), payment.getPaymentData(), status);
             paymentRepository.save(newPayment);
             return newPayment;
         } else {
