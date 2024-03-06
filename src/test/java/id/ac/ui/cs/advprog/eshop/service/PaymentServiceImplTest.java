@@ -179,7 +179,7 @@ public class PaymentServiceImplTest {
     void testFindAllByMethodIfAllLowerCase(){
         Payment payment = payments.get(1);
         doReturn(new ArrayList<Payment>()).when(paymentRepository)
-                .findAllByMethod(payment.getMethod().toLowerCase());
+                .getAllPayment(payment.getMethod().toLowerCase());
 
         List<Payment> results = paymentService.findAllByMethod(
                 payment.getMethod().toLowerCase());

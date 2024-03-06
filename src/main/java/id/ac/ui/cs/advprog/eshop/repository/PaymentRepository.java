@@ -32,14 +32,7 @@ public class PaymentRepository {
         return null;
     }
 
-    public List<Payment> findAllByMethod (String method){
-        List<Payment> result = new ArrayList<>();
-        for (Payment savedPayment : paymentData){
-            if (savedPayment.getMethod().equals(method)){
-                result.add(savedPayment);
-            }
-        }
-
-        return  result;
+    public List<Payment> getAllPayment (String method){
+        return null;
     }
 }

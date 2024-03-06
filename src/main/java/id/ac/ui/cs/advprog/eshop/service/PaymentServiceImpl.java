@@ -40,7 +40,7 @@ public class PaymentServiceImpl implements PaymentService{
     }
     @Override
     public List<Payment> findAllByMethod(String method){
-        return paymentRepository.findAllByMethod(method);
+        return paymentRepository.getAllPayment(method);
     }
 
 
