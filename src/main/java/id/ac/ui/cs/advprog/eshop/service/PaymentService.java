@@ -9,5 +9,5 @@ public interface PaymentService {
     public Payment addPayment(Payment payment);
     public Payment setStatus(String paymentId, String Status);
     public Payment findById(String orderId);
-    public List<Payment> findAllByMethod(String method);
+    public List<Payment> getAllPayment();
 }

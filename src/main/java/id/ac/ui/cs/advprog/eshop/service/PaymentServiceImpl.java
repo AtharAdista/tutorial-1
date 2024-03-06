@@ -38,10 +38,7 @@ public class PaymentServiceImpl implements PaymentService{
     public Payment findById(String paymentId){
         return paymentRepository.findById(paymentId);
     }
-    @Override
-    public List<Payment> findAllByMethod(String method){
-        return paymentRepository.getAllPayment();
-    }
+
 
 
 }

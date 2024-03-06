@@ -176,13 +176,9 @@ public class PaymentServiceImplTest {
     }
 
     @Test
-    void testFindAllByMethodIfAllLowerCase(){
-        Payment payment = payments.get(1);
-        doReturn(new ArrayList<Payment>()).when(paymentRepository)
-                .getAllPayment();
-
-        List<Payment> results = paymentService.findAllByMethod(
-                payment.getMethod().toLowerCase());
-        assertTrue(results.isEmpty());
+    void testGetAllPayments() {
+        doReturn(payments).when(paymentRepository).getAllPayment();
+        List<Payment> result = paymentService.getAllPayment();
+        assertEquals(payments, result);
     }
 }
