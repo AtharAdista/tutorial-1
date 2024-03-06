@@ -74,7 +74,6 @@ public class Payment {
         } else {
             setStatus(PaymentStatus.REJECTED.getValue());
         }
-
     }
 
     public Payment(String id, Order order, String method, Map<String, String> paymentData, String status){
