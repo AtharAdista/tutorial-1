@@ -9,14 +9,37 @@ public class PaymentRepository {
 
     private List<Payment> paymentData = new ArrayList<>();
     public Payment save(Payment payment) {
-        return null;
+       int i = 0;
+       for (Payment savePayment : paymentData){
+           if (savePayment.getId().equals(payment.getId())){
+               paymentData.remove(i);
+               paymentData.add(i, payment);
+               return payment;
+           }
+           i += 1;
+       }
+
+       paymentData.add(payment);
+       return payment;
     }
 
     public Payment findById (String id){
+        for (Payment savePayment: paymentData){
+            if (savePayment.getId().equals(id)){
+                return  savePayment;
+            }
+        }
         return null;
     }
 
     public List<Payment> findAllByMethod (String method){
-        return null;
+        List<Payment> result = new ArrayList<>();
+        for (Payment savedPayment : paymentData){
+            if (savedPayment.getMethod().equals(method)){
+                result.add(savedPayment);
+            }
+        }
+
+        return  result;
     }
 }

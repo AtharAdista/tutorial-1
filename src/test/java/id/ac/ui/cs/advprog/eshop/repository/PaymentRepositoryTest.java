@@ -18,7 +18,7 @@ public class PaymentRepositoryTest {
 
     PaymentRepository paymentRepository;
     List<Payment> payments;
-    private Map<String, String> paymentData = new HashMap<>();
+    private Map<String, String> paymentData;
 
 
     @BeforeEach
@@ -36,11 +36,21 @@ public class PaymentRepositoryTest {
         Order order1 = new Order("13652556-012a-4c07-b546-54eb1396d79b", products, 1708560000L, "Safira Sudrajat");
         orders.add(order1);
 
+        paymentData = new HashMap<>();
+        paymentData.put("voucherCode", "ESHOP1234ABC5678");
+
         payments = new ArrayList<>();
         Payment payment1 = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266", orders.getFirst(), "VOUCHER_CODE", this.paymentData, true);
         payments.add(payment1);
+
+        paymentData = new HashMap<>();
+        paymentData.put("address", "Jl. keren");
+        paymentData.put("deliveryFee", "5000");
         Payment payment2 = new Payment("c4e8540-6c59-6886-05e9-h54fd0842377", orders.getFirst(), "CASH_ON_DELIVERY", this.paymentData, true);
         payments.add(payment2);
+
+        paymentData = new HashMap<>();
+        paymentData.put("voucherCode", "ESHOP1234ABC5678");
         Payment payment3 = new Payment("d5f9651-7d60-7997-16f0-i65g1953488", orders.getFirst(), "VOUCHER_CODE", this.paymentData, true);
         payments.add(payment3);
 
