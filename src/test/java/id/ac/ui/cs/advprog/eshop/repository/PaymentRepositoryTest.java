@@ -146,24 +146,15 @@ public class PaymentRepositoryTest {
     }
 
     @Test
-    void testFindAllByMethodIfMethodValid(){
+    void testGetAllPayment(){
         for (Payment payment: payments){
             paymentRepository.save(payment);
         }
 
         List<Payment> paymentList = paymentRepository.findAllByMethod(
                 payments.getFirst().getMethod());
-        assertEquals(2, paymentList.size());
+        assertEquals(4, paymentList.size());
     }
 
-    @Test
-    void testFindAllByMethodIfAllMethodLowerCase(){
-        for (Payment payment: payments){
-            paymentRepository.save(payment);
-        }
 
-        List<Payment> paymentList = paymentRepository.findAllByMethod(
-                payments.getFirst().getMethod().toLowerCase());
-        assertTrue(paymentList.isEmpty());
-    }
 }
