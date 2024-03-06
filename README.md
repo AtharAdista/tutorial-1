@@ -80,3 +80,21 @@ Menurut saya, kode saya sudah menerapkan CI/CD, namun mungkin penggunaannya masi
    - Kode kurang fleksibel, dengan tidak menerapkan prinsip LSP dan OCP maka kode kita akan rentan terhadap perubahan dan sulit diperluas dikarenakan adanya potensi error.
    - Kode akan kurang relevan, dengan tidak menerapkan prinsip ISP maka kode kita akan memiliki banyak sekali method-method yang tidak relevan.
 </details>
+
+<details>
+
+   <summary>
+      Tutorial 4
+   </summary>
+
+1. Menurut saya alur TTD yang sudah diajarkan cukup berguna dikarenakan nantinya kita dapat membuat kode yang aman dan mudah di maintain. Dengan menerapkan TTD kita juga dapat memastikan bahwa kode yang dihasilkan diuji secara menyeluruh sehingga mengurangi kemungkinan terkena bug. Penerapan TTD juga membuat kita memecah kode ke unit-unit kecil yang dapat diuji secara terpisah sehingga akan memudahkan pemeliharaan dan pengembangan. Selain itu, walaupun TTD terkesan lambat di awal karena penulisan tes, namun TTD dapat meningkatkan produktivitas secara keseluruhan dengan mengurangi waktu yang dihabiskan untuk mencari bug yang ada pada kode kita nantinya. TTD juga tidak hanya membantu selama proses pengembangan dan pemeliharaan, tetapi juga membantu ketika kita menambahkan fitur baru. Pengujian yang sudah dibuat akan membantu kita memastikan bahwa fitur lama tetap berfungsi dengan baik setelah kita menambahkan fitur baru.
+
+
+2. Menurut saya, unit test yang sudah saya buat sudah mengikuti F.I.R.S.T principle
+   - Fast : unit test saya berjalan dengan cepat sehingga tidak mengganggu workflow saya.
+   - Isolated : unit test saya sudah independen satu sama lain, sehingga hasil dari satu pengujian tidak memengaruhi hasil pengujian lainnya. Saya juga sudah menerapkan setUp. Tapi selanjutnya mungkin saya harus menerapkan beberapa teknik lagi agar kode saya lebih isolated, seperti menerapkan tearDown
+   - Repeatable : Dikarenakan saya sudah menerapkan prinsip isolated maka unit test yang sudah dibuat juga selalu memberikan hasil yang konsisten walaupun terus diulang berkali-kali.
+   - Self-validating : Saya sudah menerapkan assertions dalam unit test saya sehingga laporan hasil unit test saya erbilang cukup jelas dalam memberitahu apakah pengujian berhasil atau gagal.
+   - Thorough : Unit test yang sudah dibuat juga sudah mengcover seluruh happy dan unhappy path.
+
+</details>
