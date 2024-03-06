@@ -40,7 +40,7 @@ public class PaymentServiceImpl implements PaymentService{
     }
     @Override
     public List<Payment> getAllPayment(){
-        return null;
+        return paymentRepository.getAllPayment();
     }
 
 
