@@ -152,7 +152,7 @@ public class PaymentRepositoryTest {
         }
 
         List<Payment> paymentList = paymentRepository.getAllPayment(
-                payments.getFirst().getMethod());
+                );
         assertEquals(3, paymentList.size());
     }
 
