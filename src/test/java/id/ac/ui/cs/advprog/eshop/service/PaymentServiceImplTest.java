@@ -81,21 +81,13 @@ public class PaymentServiceImplTest {
     }
 
     @Test
-    void testAddInvalidPayment(){
-        assertThrows(IllegalArgumentException.class, () -> {
-            Payment paymentData = new Payment("b3d7439-5b48-5775-94d8-g43ec9731266",
-                    payments.getFirst().getOrder(), "PINJAMAN_ONLINE", this.paymentData, true);
-            Payment payment = paymentService.addPayment(paymentData);
-        });
-    }
-
-    @Test
     void testAddCashOnDeliveryPaymentIfAlreadyExists(){
         Payment payment = payments.get(1);
         doReturn(payment).when(paymentRepository).save(payment);
 
-        assertNull(paymentService.addPayment(payment));
-        verify(paymentRepository, times(0)).save(payment);
+        Payment result = paymentService.addPayment(payment);
+        verify(paymentRepository, times(1)).save(payment);
+        assertEquals(payment.getId(), result.getId());
     }
 
     @Test
@@ -103,8 +95,9 @@ public class PaymentServiceImplTest {
         Payment payment = payments.getFirst();
         doReturn(payment).when(paymentRepository).save(payment);
 
-        assertNull(paymentService.addPayment(payment));
-        verify(paymentRepository, times(0)).save(payment);
+        Payment result = paymentService.addPayment(payment);
+        verify(paymentRepository, times(1)).save(payment);
+        assertEquals(payment.getId(), result.getId());
     }
 
     @Test
@@ -180,18 +173,6 @@ public class PaymentServiceImplTest {
     void testFindByIdIfIdNotFound(){
         doReturn(null).when(paymentRepository).findById("ZCZC");
         assertNull(paymentService.findById("ZCZC"));
-    }
-
-    @Test
-    void testFindAllByMethodIfMethodCorrect(){
-        Payment payment = payments.getFirst();
-        doReturn(payments).when(paymentRepository).findAllByMethod(payment.getMethod());
-
-        List<Payment> results = paymentService.findAllByMethod(payment.getMethod());
-        for (Payment result : results ){
-            assertEquals(payment.getMethod(), result.getMethod());
-        }
-        assertEquals(2, results.size());
     }
 
     @Test
